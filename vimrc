@@ -46,7 +46,6 @@ set statusline+=%#SLpos#\ %3l:%-2c\
 set statusline+=%#SLper#\ %3p%%\ 
 
 "Keyboard shortcuts
-""Keyboard shortcuts
 xnoremap l :w !pbcopy
 nnoremap ,<space> :nohlsearch<CR>
 
