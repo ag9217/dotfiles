@@ -1,3 +1,18 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'lervag/vimtex'
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+"let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+call plug#end()
+
 syntax enable
 
 set noswapfile
@@ -12,14 +27,15 @@ set smartindent
 set ruler
 set showmatch
 
-set number relativenumber
-set nu rnu
+"set number relativenumber
+set nu "rnu
 
 filetype on
 filetype indent on
 filetype plugin on
 
 set wildmenu
+set wildmode=longest:full,full
 
 set hlsearch
 
@@ -49,4 +65,8 @@ set statusline+=%#SLper#\ %3p%%\
 xnoremap l :w !pbcopy
 nnoremap ,<space> :nohlsearch<CR>
 
-colorscheme dim
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps'
+let g:Tex_CompileRule_dvi = 'latex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
+let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
